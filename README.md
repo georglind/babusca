@@ -89,10 +89,26 @@ import g2
 # possible energies of the two-photon incoming photonic state
 Es = 2 * numpy.linspace(-10 + 1e9, 10 + 1e9, 512)
 
-# the g2 function, where we supply chli as the incoming channel indices and chlo as the outgoing channel indices
-g2res = g2.coherent_state(se, chlis=(0, 0), chlso-(1, 1), Es=Es)
+# the g2 function for zero delay, where we supply chli as the incoming channel indices and chlo as the outgoing channel indices
+g2tau0 = g2.coherent_state_tau0(se, chlis=(0, 0), chlso-(1, 1), E=Es)
 
-# g2res['g2'] now contains g2, but also several components of it for easy access
+# g2tau0['g2'] now contains g2, but also several components of it for easy access
+```
+
+If we instead want time delayed correlations, we calculate,
+
+```python
+import g2
+
+# possible energies of the two-photon incoming photonic state
+Es = 2 * numpy.linspace(-10 + 1e9, 10 + 1e9, 512)
+
+# array of time delays
+taus = numpy.linspace(0, 10, 512)
+
+g2tau = g2.coherent_state_tau(se, chlsi=(0, 0), chlso=(1, 1, E=Es, tau=taus)
+
+# g2tau['g2'] now contains g2 for various energies and taus (but also several components of it for easy access).
 ```
 
 ## Using generators
