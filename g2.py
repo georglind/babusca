@@ -7,7 +7,7 @@ import utilities as util
 
 def coherent_state_tau0(setup, chlsi, chlso, E=0):
     """
-    g2 from Mikhails formula
+    g2 for no delay.
 
     Parameters
     ----------
@@ -456,75 +456,3 @@ def fijp(setup, k0, q0, i, j, i1, i2):
     _, Sj = smatrix.one_particle(setup, i2, i, np.array([k0 - q0]))
 
     return Si * Sj
-
-
-#     $$\      $$\  $$$$$$\  $$$$$$\ $$\   $$\
-#     $$$\    $$$ |$$  __$$\ \_$$  _|$$$\  $$ |
-#     $$$$\  $$$$ |$$ /  $$ |  $$ |  $$$$\ $$ |
-#     $$\$$\$$ $$ |$$$$$$$$ |  $$ |  $$ $$\$$ |
-#     $$ \$$$  $$ |$$  __$$ |  $$ |  $$ \$$$$ |
-#     $$ |\$  /$$ |$$ |  $$ |  $$ |  $$ |\$$$ |
-#     $$ | \_/ $$ |$$ |  $$ |$$$$$$\ $$ | \$$ |
-#     \__|     \__|\__|  \__|\______|\__|  \__|
-
-
-if __name__ == '__main__':
-    import matplotlib.pyplot as plt
-    import seaborn
-    seaborn.set()
-
-    # model
-    N = 3
-    U = 5
-
-    model = centre.Model(
-        omegas=[0] * N,
-        links=[[i, i + 1, 1] for i in xrange(N - 1)],
-        U=[2 * U] * N)
-
-    # channels
-    channels = []
-    channels.append(centre.LocalChannel(sites=[0], strengths=[.1]))
-    channels.append(centre.LocalChannel(sites=[N - 1], strengths=[2]))
-
-    setup = centre.Setup(model, channels)
-
-    Es = np.linspace(-6, 20, 1024)
-    taus = np.linspace(0, 10, 128)
-    chlso = [1, 1]
-
-    g21 = np.zeros((len(Es), len(taus)), dtype=np.float64)
-    S21 = np.zeros((len(Es), len(taus)), dtype=np.float64)
-    nn21 = np.zeros((len(Es),), dtype=np.float64)
-
-    g22 = np.zeros((len(Es), len(taus)), dtype=np.float64)
-    S22 = np.zeros((len(Es), len(taus)), dtype=np.float64)
-    nn22 = np.zeros((len(Es),), dtype=np.float64)
-    for i, E in enumerate(Es):
-        print(i)
-        g21[i, :], S21[i, :], nn21[i] = fock_state(setup, [0, 0], chlso, E, 0, taus)
-
-    g22, S22, nn22 = coherent_state(setup, [0, 0], chlso, Es, taus)
-
-    plt.figure(figsize=(10, 8))
-    plt.subplot(2, 2, 1)
-    plt.semilogy(Es, g21[:, 0], label='g')
-    plt.semilogy(Es, S21[:, 0], label='S')
-    plt.semilogy(Es, np.abs(nn21), label='g1')
-    plt.legend()
-
-    plt.subplot(2, 2, 2)
-    plt.pcolor(taus, Es, np.log10(g21))
-    plt.colorbar()
-
-    plt.subplot(2, 2, 3)
-    plt.semilogy(Es, g22[:, 0], label='g')
-    plt.semilogy(Es, np.abs(S22[:, 0]), label='S')
-    plt.semilogy(Es, np.abs(nn22), label='g1')
-    plt.legend()
-
-    plt.subplot(2, 2, 4)
-    plt.pcolor(taus, Es, np.log10(g22))
-    plt.colorbar()
-
-    plt.show()
