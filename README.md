@@ -120,8 +120,8 @@ If we want to generate a uniform chain, there is a special class for this,
 ```python
 import generators.chain as chain
 
-# sets up a uniform chain
-se = chain.UniformChain(N=10, js=[0,9], 0, 1, 10, gs=chain.normalize([1,1]), parasite=0.2)
+# sets up a uniform chain with onsite energies, E=0, hoppings, t=1, and U=10.
+se = chain.UniformChain(N=10, js=[0,9], E=0, t=1, U=10, gs=chain.normalize([1,1]), parasite=0.2)
 ```
 
 Note that we used the `chain.normalize` function to create two normalized couplings, i.e. couplings both of whose overall rate is given by, `Gamma = pi * g ** 2 = 1`.
