@@ -6,11 +6,32 @@ import os
 # babusca scattering
 from context import scattering
 
-
 class Chain(scattering.Setup):
 
     def __init__(self, N, js, Es, ts, Us, gs=None, parasite=0):
-
+        """
+        Generate a scattering setup with two main channels connected to a chain of BH sites.
+        
+        O - O - O - O - .. - O
+        0   1   2   3        N
+        
+        Parameters
+        ----------
+        N : int
+            Number of sites
+        js : list
+            List of the two sites which the two channels connect to
+        Es : list
+            List of onsite energies
+        ts : list
+            List of values for each hopping, [t0:1, t1:2, ... tN-1:N]
+        Us : list
+            List of values for onsite interaction
+        gs: list
+            List of coupling strengths for each channel. Defaults to normalized.
+        parasite : float
+            Additional uniform decay constant. Defaults to 0.
+        """
         model = scattering.Model(
             Es=Es,
             links=[(i, i + 1, ts[i]) for i in xrange(N - 1)],
@@ -65,6 +86,29 @@ class ImpurityChain(Chain):
 class UniformChain(Chain):
 
     def __init__(self, N, js, E, t, U, gs=None, parasite=0):
+        """
+         Generate a scattering setup with two main channels connected to a uniform chain of BH sites.
+        
+        O - O - O - O - .. - O
+        0   1   2   3        N
+        
+        Parameters
+        ----------
+        N : int
+            Number of sites
+        js : list
+            List of the two sites which the two channels connect to
+        E : float
+            onsite energy
+        t : float
+            hopping
+        U : float
+            onsite interaction
+        gs: list
+            List of coupling strengths for each channel. Defaults to normalized.
+        parasite : float
+            Additional uniform decay constant. Defaults to 0.
+        """
         Chain.__init__(self, N, js, [E] * N, [t] * (N - 1), [U] * N, gs, parasite)
         self.info['name'] = 'uniformchain'
 
