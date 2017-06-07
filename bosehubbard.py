@@ -475,15 +475,3 @@ def primes(upto):
             isprime[(factor * 3 - 2) / 2::factor] = 0
 
     return np.insert(primes[isprime], 0, 2)
-
-
-if __name__ == '__main__':
-
-    m = Model(
-        es=[0] * 2,
-        links=[[0, 1, 1]],
-        U=[0] * 2,
-        W=np.ones((2, 2)))
-
-    ns = m.numbersector(3)
-    print(ns.hamiltonian.toarray())
