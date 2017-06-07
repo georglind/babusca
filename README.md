@@ -29,9 +29,17 @@ One may also include off-site two-body interactions by providing a symmetric `W`
 It is also possible to visualize the scatterer geometry by using the `graph` method.
 
 ```python
- # plot the scatterer geometry
- mo.graph()
+# plot the scatterer geometry using matplotlib.
+mo.graph()
 ```
+
+And inspect the Hamiltonian with each numbersector,
+
+```python
+# get a reference to the relevant number sector (here the three-photon subspace).
+nthree = mo.numbersector(3)
+print(nthree.hamiltonian.toarray())
+ ```
 
 ### Constructing the chiral channels
 
