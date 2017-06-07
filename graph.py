@@ -150,6 +150,8 @@ def FDstep(graph, xy=None, vs=None, energy=0, heat=0.5, settings=None):
 
 
 if __name__ == "__main__":
+    # This is a demonstrating of the graph library showing a plot of a 7 site chain using force-directed layout.
+
     nodes = [0] * 7
     links = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 0], [4, 6], [6, 5]]
 
