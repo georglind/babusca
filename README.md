@@ -2,17 +2,17 @@
 
 Scattering theory for few-photon transport through Bose-Hubbard lattices.
 
-Library capable for calculation first and second order coherence function for Bose-Hubbard lattices coupled to chiral channels. On current equipment babusca can practically cope with system of up to 120-150 sites.
+The babusca library is capable at calculating first and second order coherence function for Bose-Hubbard lattices coupled to any number of chiral channels. On current equipment babusca can cope with system of up to 120-150 sites.
 
-The code is well documented, and several examples of simple systems are provided in the examples folder.
+The code is well documented and the exmamples folder contains several calculations for various lattice geometries.
 
-Please do not hesitate to contact me for questions or comments. 
+If you have any questions or comments, please, don't hesitate to contact me.
 
 ## Basic usage
 
 ### Contructing the scatterer
 
-The Bose-Hubbard scatterer is specificed using the scattering library.
+The Bose-Hubbard scatterer is specificed using the babusca.scattering library.
 
 Say, we want to construct a three-site model with:
 - Onsite energies at `E0 = +1e9+1`, `E1 =1e9`, `E2 = 1e9-1`.
@@ -142,4 +142,6 @@ se = chain.UniformChain(N=10, js=[0,9], E=0, t=1, U=10, gs=chain.normalize([1,1]
 
 Note that we used the `chain.normalize` function to create two normalized couplings, i.e. couplings both of whose overall rate is given by, `Gamma = pi * g ** 2 = 1`.
 
-There are several other generators, but simply inspecting the code, should easily reveal their way of working.
+There are several other generators for various geometries and by inspecting the code I hope you are able to easily determine their workings.
+
+/Kim G. L. Pedersen
