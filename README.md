@@ -1,6 +1,6 @@
 # babusca
 
-Scattering theory for few-photon transport through Bose-Hubbard lattices.
+Scattering theory for few-photon transport through Bose-Hubbard lattices coupled locally or quasi-locally to chiral channels. Such scattering setups can be (and have been) realized in superconducting circuits or using optical resonators.
 
 The babusca library is capable at calculating first and second order coherence function for Bose-Hubbard lattices coupled to any number of chiral channels. On current equipment babusca can cope with system of up to 120-150 sites.
 
