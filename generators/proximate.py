@@ -18,7 +18,7 @@ class ProximateChain(scattering.Setup):
         # model
         model = scattering.Model(
             Es=Es,
-            links=[(i, i + 1, ts[i]) for i in xrange(N - 1)],
+            links=[(i, i + 1, ts[i]) for i in range(N - 1)],
             Us=Us,
             W=Ws)
 
@@ -35,7 +35,7 @@ class ProximateChain(scattering.Setup):
 
         parasites = None
         if parasite > 0:
-            parasites = [scattering.Channel(site=i, strength=parasite) for i in xrange(N)]
+            parasites = [scattering.Channel(site=i, strength=parasite) for i in range(N)]
 
         scattering.Setup.__init__(self, model, channels, parasites)
 

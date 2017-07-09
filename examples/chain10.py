@@ -11,7 +11,7 @@ def chain_tau0(t=1, ylim1=None, ylim2=None, Es=None, directory="", yticks2=None,
     Us = [0.5, 1, 2, 10]
     ses = [chain.UniformChain(N=10, js=(0, 9), E=0, t=t, U=Ui * t, parasite=parasite) for Ui in Us]
 
-    for i in xrange(0, len(Us)):
+    for i in range(0, len(Us)):
         ses[i].label = r'${}$'.format(ses[i].info['Us'][0])
 
     if Es is None:
@@ -37,13 +37,13 @@ def chain_tau(t=1, U=1, parasite=0, taus=None, zticks=None, logscale=False):
 
 if __name__ == "__main__":
     # t = Gamma
-    # chain_tau0(t=1, ylim1=(1e-5, 2), ylim2=(1e-5, 1e5), parasite=.5)
-    # chain_tau0(t=1, ylim1=(1e-5, 2), ylim2=(1e0, 1e30), Es = np.linspace(2 / 2 * 1, 12 / 2 * 1, 1024), directory='2-', yticks2=[1e0, 1e15, 1e30])
+    chain_tau0(t=1, ylim1=(1e-5, 2), ylim2=(1e-5, 1e5), parasite=0)
+    chain_tau0(t=1, ylim1=(1e-5, 2), ylim2=(1e0, 1e30), Es=np.linspace(2 / 2 * 1, 12 / 2 * 1, 1024), directory='2-', yticks2=[1e0, 1e15, 1e30])
 
     # chain_tau(t=1, U=1, parasite=0, zticks=[0, .5, 1, 1.5, 2], taus=np.linspace(0, 6, 1024), logscale=False)
 
     # t = 10 Gamma
     chain_tau0(t=10, ylim1=(1e-5, 2), ylim2=(1e-5, 1e5), parasite=.5)
-    # chain_tau0(t=10, ylim1=(1e-5, 2), ylim2=(1e0, 1e30), Es = np.linspace(2 / 2 * 10, 12 / 2 * 10, 1024), directory='2-', yticks2=[1e0, 1e15, 1e30], parasite=.5)
+    chain_tau0(t=10, ylim1=(1e-5, 2), ylim2=(1e0, 1e30), Es=np.linspace(2 / 2 * 10, 12 / 2 * 10, 1024), directory='2-', yticks2=[1e0, 1e15, 1e30], parasite=.5)
 
-    chain_tau(t=10, U=10, parasite=.5, zticks=[0, .5, 1, 1.5, 2], taus=np.linspace(0, 3, 1024), logscale=False)
+    # chain_tau(t=10, U=10, parasite=.5, zticks=[0, .5, 1, 1.5, 2], taus=np.linspace(0, 3, 1024), logscale=False)

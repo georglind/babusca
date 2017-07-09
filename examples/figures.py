@@ -1,4 +1,4 @@
-## function for plotting and saving figures
+# function for plotting and saving figures
 from __future__ import division, print_function
 import numpy as np
 import os
@@ -8,6 +8,7 @@ from context import smatrix
 from context import g2 as g2calc
 
 import matplotlib as mpl
+import matplotlib.pyplot as plt
 
 from matplotlib.ticker import LogLocator
 from matplotlib.ticker import LinearLocator
@@ -21,8 +22,6 @@ from itertools import cycle
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.unicode'] = True
 # mpl.rcParams['font.family'] = 'Helvetica'
-
-import matplotlib.pyplot as plt
 
 
 def g1_coherent(ses, chli, chlo, d1s, directory, offset, ylim=None):
@@ -137,7 +136,7 @@ def g2_coherent(ses, chlsi, chlso, d1s, d2s, directory, offset, ylims=None, ytic
     ax1.xaxis.set_major_locator(MaxNLocator(nbins=6, prune=None))
 
     # labels
-    ax1.set_ylabel(r'$g^{{(1)}}_{{{ins[0]},{outs[0]}}}$'.format(
+    ax1.set_ylabel(r'$g^{{(1)}}_{{{ins[0]},{outs[0]}}}$ (units of $f$)'.format(
         ins=[c + 1 for c in chlsi],
         outs=[c + 1 for c in chlso]))
     ax1.set_xlabel(r'$2 \delta$ (units of $\Gamma$)')
@@ -155,17 +154,22 @@ def g2_coherent(ses, chlsi, chlso, d1s, d2s, directory, offset, ylims=None, ytic
     ax2.semilogy(d2s, np.ones(d2s.size), linewidth=1, color='#BBBBBB')
 
     # linestyle
-    linestyles = ['-', (1, (9, 1.2)), (1, (9, .7, 1, .7)), (1, (9, 3))]
+    # linestyles = ['-', (1, (9, 1.2)), (1, (9, .7, 1, .7)), (1, (9, 3))]
+    linestyles = ['-', (1, (9, 1.5)), (1, (9, 1.5, 2, 1.5)), (1, (3, 1.5))]
     ls = cycle(linestyles)
-    colors = plt.cm.inferno(np.linspace(.2, .8, len(ses)))
 
+    colors = plt.cm.inferno(np.linspace(.2, .8, len(ses)))
+    markers = ['', 'o', '^', 's', 'o']
+    markers = [''] * 8
     for i, se in enumerate(ses):
         # find label
         lbl = None if not hasattr(se, 'label') else se.label
         # ax2.semilogy(d2s, np.abs(g2s[i, :]), linewidth=1.5, ls='-', color='#222222')
         # ax2.semilogy(d2s, np.abs(g2s[i, :]), linewidth=1.2, ls='-', color='#FFFFFF')
-        ax2.semilogy(d2s, np.abs(g2s[i, :]), linewidth=0.4, color=colors[i])
-        ax2.semilogy(d2s, np.abs(g2s[i, :]), label=lbl, linewidth=1.2, ls=next(ls), color=colors[i])
+        # ax2.semilogy(d2s, np.abs(g2s[i, :]), linewidth=0.4, color=colors[i])
+        ax2.semilogy(d2s, np.abs(g2s[i, :]), label=lbl, linewidth=1.6, ls=next(ls), color=colors[i])
+        # ax2.semilogy(d2s[::128], np.abs(g2s[i, ::128]), linewidth=0, color=colors[i], marker=markers[i])
+        # ax2.semilogy(d2s, np.abs(g2s[i, :]), label=lbl, linewidth=1.3, ls=next(ls), color=colors[i])
 
     # locators
     # ax2.yaxis.set_major_locator(LogLocator(numticks=yticks))
@@ -362,7 +366,7 @@ def g2_coherent_tau(se, chlsi, chlso, Es, taus, directory="", logscale=False, ti
             cb.ax.set_yticklabels(ticksom)
 
             # im = plt.imshow(Z, interpolation='bilinear', origin='lower',
-                            # cmap=cm.gray, extent=(-3, 3, -2, 2))
+            # cmap=cm.gray, extent=(-3, 3, -2, 2))
             levels = ticks
             CS = plt.contour(g2s.T, levels,
                              linestyles=':',

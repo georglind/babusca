@@ -2,6 +2,7 @@ from __future__ import print_function, division
 import sys
 import numpy as np
 
+import context
 import figures
 import generators.chain as chain
 
@@ -10,7 +11,7 @@ def dimer_tau0(js, t=1, ylim1=None, ylim2=None):
     Us = [0.5, 1, 2, 10]
     ses = [chain.UniformChain(N=2, js=js, E=0, t=t, U=Ui * t) for Ui in Us]
 
-    for i in xrange(0, len(Us)):
+    for i in range(0, len(Us)):
         ses[i].label = r'${}$'.format(ses[i].info['Us'][0])
 
     Es = np.linspace(-5 / 2 * t, 15 / 2 * t, 1024)
@@ -34,11 +35,11 @@ if __name__ == '__main__':
 
     # strongly coupled t = Gamma
     dimer_tau0((0, 1), 1, (1e-2, 2), (1e-3, 1e3))
-    dimer_tau((0, 1), 1, 1)
+    # dimer_tau((0, 1), 1, 1)
 
     # weakly coupled t = 10 Gamma
     dimer_tau0((0, 1), 10, (1e-5, 2), (1e-4, 1e6))
-    dimer_tau((0, 1), 10, 1, taus=np.linspace(0, 1, 1024))
+    # dimer_tau((0, 1), 10, 1, taus=np.linspace(0, 1, 1024))
 
     # same site
     dimer_tau0((0, 0), 1, (1e-3, 2), (1e-1, 1e4))

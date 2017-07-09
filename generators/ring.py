@@ -12,7 +12,7 @@ class Ring(scattering.Setup):
 
         model = scattering.Model(
             Es=Es,
-            links=[(i, (i + 1) % N, ts[i]) for i in xrange(N)],
+            links=[(i, (i + 1) % N, ts[i]) for i in range(N)],
             Us=Us,
             W=Ws)
 
@@ -25,7 +25,7 @@ class Ring(scattering.Setup):
 
         parasites = []
         if parasite > 0:
-            parasites = [scattering.Channel(site=i, strength=parasite) for i in xrange(N)]
+            parasites = [scattering.Channel(site=i, strength=parasite) for i in range(N)]
 
         scattering.Setup.__init__(self, model, channels, parasites)
 
@@ -78,9 +78,9 @@ def noisify(ring, dE, dt, dU):
     dUs = np.random.normal(scale=dU, size=(ring.N,))
 
     c = Ring(ring.N, ring.js,
-             [ring.Es[i] + dEs[i] for i in xrange(ring.N)],
-             [ring.ts[i] + dts[i] for i in xrange(ring.N)],
-             [ring.Us[i] + dUs[i] for i in xrange(ring.N)],
+             [ring.Es[i] + dEs[i] for i in range(ring.N)],
+             [ring.ts[i] + dts[i] for i in range(ring.N)],
+             [ring.Us[i] + dUs[i] for i in range(ring.N)],
              ring.gs, ring.parasites[0].strength)
 
     c.info['name'] = 'noisyring'

@@ -66,7 +66,7 @@ def one_particle_local(sp, chli, chlo, Es=None):
     # num = sp.gs[chli] * sp.gs[chlo] * num2.T * num1
     num = num2.T * num1
 
-    for k in xrange(len(E1)):
+    for k in range(len(E1)):
         T1[:] += num[k] / (Es - E1[k])
 
     return Es, T1
@@ -106,7 +106,7 @@ def one_particle_quasilocal(sp, chli, chlo, Es=None):
         # num = sp.gs[chli] * sp.gs[chlo] * num2.T * num1
         num = num2.T * num1
 
-        for k in xrange(len(E1)):
+        for k in range(len(E1)):
             T1[i] += num[k] / (E - E1[k])
 
     return Es, T1

@@ -10,7 +10,7 @@ def figure1():
     Us = [.5, 1, 2, 10]
     ses = [chain.UniformChain(1, [0, 0], 0, [], Ui) for Ui in Us]
 
-    for i in xrange(len(Us)):
+    for i in range(len(Us)):
         ses[i].label = r'${}$'.format(Us[i])
 
     Es = np.linspace(-5 / 2, 15 / 2, 1024)

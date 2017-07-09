@@ -149,7 +149,7 @@ class NumberSector:
             Hvs += (states.dot(H0d)).tolist()
 
         # then off diagonal (proper hopping) elements
-        for i in xrange(H0.shape[0]):
+        for i in range(H0.shape[0]):
             js = np.nonzero(states[:, i])[0]  # affected states
             nj = len(js)
 
@@ -406,7 +406,7 @@ class Basis:
 
         states[0, 0] = nb
         ni = 0  # init
-        for i in xrange(1, states.shape[0]):
+        for i in range(1, states.shape[0]):
 
             states[i, :N - 1] = states[i - 1, :N - 1]
             states[i, ni] -= 1
@@ -467,11 +467,10 @@ def primes(upto):
     """
     primes = np.arange(3, upto + 1, 2)
 
-    isprime = np.ones((upto - 1) / 2, dtype=bool)
+    isprime = np.ones(int((upto - 1) / 2), dtype=bool)
 
     for factor in primes[:int(np.sqrt(upto))]:
-
-        if isprime[(factor - 2) / 2]:
-            isprime[(factor * 3 - 2) / 2::factor] = 0
+        if isprime[int((factor - 2) / 2)]:
+            isprime[int((factor * 3 - 2) / 2)::factor] = 0
 
     return np.insert(primes[isprime], 0, 2)

@@ -21,7 +21,7 @@ def weak_hybridization(phi=0, chlo=1, ylim1=None, ylim2=None):
     Us = [.5, 1, 2, 10]
     ses = [prox.UniformProxChain(n, offset, t, Ui, xs=xs) for Ui in Us]
 
-    for i in xrange(len(Us)):
+    for i in range(len(Us)):
         ses[i].label = r'${0}$'.format(ses[i].info['Us'][0])
 
     directory = ses[0].directory() + 'phi{}/'.format(phi)
@@ -37,7 +37,7 @@ def weak_hybridization(phi=0, chlo=1, ylim1=None, ylim2=None):
 def strong_hybridization(phi=0, ylim1=None, ylim2=None):
     if ylim1 is None:
         ylims = None
-    else: 
+    else:
         ylims = (ylim1, ylim2)
 
     n = 2
@@ -49,7 +49,7 @@ def strong_hybridization(phi=0, ylim1=None, ylim2=None):
     Us = [.5, 1, 4, 10]
     ses = [prox.UniformProxChain(n, offset, t, Ui, xs=xs) for Ui in Us]
 
-    for i in xrange(len(Us)):
+    for i in range(len(Us)):
         ses[i].label = r'${0}$'.format(ses[i].info['Us'][0])
 
     directory = ses[0].directory() + 'phi{}/'.format(phi)
@@ -77,7 +77,7 @@ def W_weak_hybridization(phi=0, chlo=1, ylim1=None, ylim2=None):
     Ws = [.5, 1, 4, 10]
     ses = [prox.UniformProxChain(n, offset, t, 1e8, Ws=np.full((n, n), Wi) - np.diag([Wi] * n), xs=xs) for Wi in Ws]
 
-    for i in xrange(len(Ws)):
+    for i in range(len(Ws)):
         ses[i].label = r'${0}$'.format(Ws[i])
         ses[i].info['name'] = 'W_' + ses[i].info['name']
         ses[i].info['Us'][0] = Ws[i]
@@ -107,7 +107,7 @@ def W_strong_hybridization(phi=0, chlo=1, ylim1=None, ylim2=None):
     Ws = [.5, 1, 4, 10]
     ses = [prox.UniformProxChain(n, offset, t, 1e8, Ws=np.full((n, n), Wi) - np.diag([Wi] * n), xs=xs) for Wi in Ws]
 
-    for i in xrange(len(Ws)):
+    for i in range(len(Ws)):
         ses[i].label = r'${0}$'.format(Ws[i])
         ses[i].info['name'] = 'W_' + ses[i].info['name']
         ses[i].info['Us'][0] = Ws[i]
@@ -129,33 +129,33 @@ if __name__ == '__main__':
         print('a')
         # weak_hybridization(.1 * np.pi, ylim1=(1e-3, 2), ylim2=(1e-3, 1e3))
     else:
-        weak_hybridization()
-        weak_hybridization(np.pi / 2 - .1 * np.pi)
-        weak_hybridization(np.pi)
-        weak_hybridization(.1 * np.pi)
-        weak_hybridization(np.pi / 2)
-        weak_hybridization(np.pi / 50)
-        weak_hybridization(np.pi / 100)
+        # weak_hybridization()
+        # weak_hybridization(np.pi / 2 - .1 * np.pi)
+        # weak_hybridization(np.pi)
+        weak_hybridization(.1 * np.pi, 1, [1e-3, 2], [1e-3, 1e3])
+        # weak_hybridization(np.pi / 2)
+        # weak_hybridization(np.pi / 50)
+        # weak_hybridization(np.pi / 100)
 
-        strong_hybridization()
-        strong_hybridization(np.pi)
-        strong_hybridization(np.pi / 2)
-        strong_hybridization(np.pi / 10)
-        strong_hybridization(np.pi / 100)
-        strong_hybridization(.4 * np.pi)
+        # strong_hybridization()
+        # strong_hybridization(np.pi)
+        # strong_hybridization(np.pi / 2)
+        # strong_hybridization(np.pi / 10)
+        # strong_hybridization(np.pi / 100)
+        # strong_hybridization(.4 * np.pi)
 
-        W_weak_hybridization()
-        W_weak_hybridization(np.pi / 2 - .1 * np.pi)
-        W_weak_hybridization(np.pi)
-        W_weak_hybridization(.1 * np.pi)
-        W_weak_hybridization(np.pi / 2)
-        W_weak_hybridization(np.pi / 50)
-        W_weak_hybridization(np.pi / 100)
+        # W_weak_hybridization()
+        # W_weak_hybridization(np.pi / 2 - .1 * np.pi)
+        # W_weak_hybridization(np.pi)
+        # W_weak_hybridization(.1 * np.pi)
+        # W_weak_hybridization(np.pi / 2)
+        # W_weak_hybridization(np.pi / 50)
+        # W_weak_hybridization(np.pi / 100)
 
-        W_strong_hybridization()
-        W_strong_hybridization(np.pi / 2 - .1 * np.pi)
-        W_strong_hybridization(np.pi)
-        W_strong_hybridization(.1 * np.pi)
-        W_strong_hybridization(np.pi / 2)
-        W_strong_hybridization(np.pi / 50)
-        W_strong_hybridization(np.pi / 100)
+        # W_strong_hybridization()
+        # W_strong_hybridization(np.pi / 2 - .1 * np.pi)
+        # W_strong_hybridization(np.pi)
+        # W_strong_hybridization(.1 * np.pi)
+        # W_strong_hybridization(np.pi / 2)
+        # W_strong_hybridization(np.pi / 50)
+        # W_strong_hybridization(np.pi / 100)

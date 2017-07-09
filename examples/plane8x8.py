@@ -9,12 +9,12 @@ import generators.plane as plane
 import matplotlib.pyplot as plt
 
 
-"""generate g1 and g2 for plane"""
 def plane_tau0(t=1, parasite=0, phase=0, ylim1=None, ylim2=None, Es=None, directory="", yticks2=None):
+    """generate g1 and g2 for plane"""
     Us = [0.5, 1, 2, 10]
     ses = [plane.UniformPlane(L=8, W=8, js=(56, 0), E=0, t=t, U=Ui * t, phase=phase, parasite=parasite) for Ui in Us]
 
-    for i in xrange(0, len(Us)):
+    for i in range(0, len(Us)):
         ses[i].label = r'${}$'.format(ses[i].info['Us'][0] * t)
 
     if Es is None:
@@ -36,7 +36,7 @@ def eigenbasis(se, nb):
 
     # get the size of the basis
     ns1size = ns1.basis.len  # length of the number sector basis
-    # G1i = xrange(ns1size)    # our Greens function?
+    # G1i = range(ns1size)    # our Greens function?
 
     # self energy
     # sigma = self.sigma(nb, phi)
@@ -71,13 +71,13 @@ def edge_phase():
     print(idxs)
     s = len(idxs)
 
-    for i in xrange(s):
+    for i in range(s):
         res += np.array([np.arctan2(np.real(psi1r[idxs[i], j] / psi1r[idxs[(i + 1) % s], j]), np.imag(psi1r[idxs[i], j] / psi1l[idxs[(i + 1) % s], j])) for j in np.arange(64)])
 
     plt.plot(np.real(E1), res / (2 * np.pi), '-o')
     Emin = np.min(np.real(E1))
     Emax = np.max(np.real(E1))
-    for i in xrange(-10, 1, 1):
+    for i in range(-10, 1, 1):
         plt.plot([Emin, Emax], [i, i])
         plt.plot([Emin, Emax], [-i, -i])
     plt.show()
@@ -91,8 +91,8 @@ def angle(z1, z2):
 def plot_eigen_function(ax, se, n, psi1l, psi1r):
 
     # plt.figure(figsize=(8, 8))
-    for x in xrange(se.info['L']):
-        for y in xrange(se.info['W']):
+    for x in range(se.info['L']):
+        for y in range(se.info['W']):
             i = x + y * se.info['L']
 
             w = np.sqrt(10) * np.abs(psi1r[i, n])
@@ -133,8 +133,8 @@ def plane_eigenbasis(t=1, parasite=0, phase=0, n=0, Es=None, directory=""):
     plt.show()
 
     def plot_weights(ax, se, n, psi1l, psi1r):
-        for x in xrange(se.info['L']):
-            for y in xrange(se.info['W']):
+        for x in range(se.info['L']):
+            for y in range(se.info['W']):
                 i = x + y * se.info['L']
                 w = psi1r[i, n].conjugate() * psi1l[i, n]
                 circle = plt.Circle((x, y), np.abs(w) * 10, color='black', zorder=10)
@@ -145,8 +145,8 @@ def plane_eigenbasis(t=1, parasite=0, phase=0, n=0, Es=None, directory=""):
         ax.set_ylim([-.5, se.info['W'] - .5])
 
     fig = plt.figure(figsize=(8, 8))
-    for n in xrange(se.info['L']):
-        for m in xrange(se.info['W']):
+    for n in range(se.info['L']):
+        for m in range(se.info['W']):
             l = n + m * se.info['L']
             ax = plt.subplot(se.info['L'], se.info['W'], l + 1)
             plot_eigen_function(ax, se, l, psi1l, psi1r)

@@ -10,7 +10,7 @@ def ring_tau0(t=1, ylim1=None, ylim2=None, Es=None, directory="", yticks2=None):
     Us = [0.5, 1, 2, 10]
     ses = [ring.UniformRing(N=6, js=(0, 2), E=0, t=t, U=Ui * t) for Ui in Us]
 
-    for i in xrange(0, len(Us)):
+    for i in range(0, len(Us)):
         ses[i].label = r'${}$'.format(ses[i].info['Us'][0] * t)
 
     if Es is None:

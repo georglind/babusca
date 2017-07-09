@@ -1,5 +1,6 @@
 from __future__ import division, print_function
 import numpy as np
+import os
 
 # import babusca scattering
 from context import scattering
@@ -11,8 +12,8 @@ class Plane(scattering.Setup):
 
         links = []
         i = 0
-        for x in xrange(L):
-            for y in xrange(W):
+        for x in range(L):
+            for y in range(W):
                 n = x + L * y
                 if x < L - 1:
                     links.append([n, n + 1, ts[i]])
@@ -37,7 +38,7 @@ class Plane(scattering.Setup):
 
         parasites = []
         if parasite > 0:
-            parasites = [scattering.Channel(site=i, strength=parasite) for i in xrange(N)]
+            parasites = [scattering.Channel(site=i, strength=parasite) for i in range(N)]
 
         scattering.Setup.__init__(self, model, channels, parasites)
 
@@ -90,8 +91,8 @@ class UniformPlane(Plane):
         else:
             ts = []
             i = 0
-            for x in xrange(L):
-                for y in xrange(W):
+            for x in range(L):
+                for y in range(W):
                     phiy = phase * x
                     n = x + L * y
                     if x < L - 1:
@@ -120,9 +121,9 @@ def noisify(chse, dE, dt, dU):
     # print(dEs)
     Nl = len(chse.ts)
     c = Plane(chse.L, chse.W, chse.js,
-              [chse.Es[i] + dEs[i] for i in xrange(chse.N)],
-              [chse.ts[i] + dts[i] for i in xrange(Nl)],
-              [chse.Us[i] + dUs[i] for i in xrange(chse.N)],
+              [chse.Es[i] + dEs[i] for i in range(chse.N)],
+              [chse.ts[i] + dts[i] for i in range(Nl)],
+              [chse.Us[i] + dUs[i] for i in range(chse.N)],
               chse.gs, chse.parasites[0].strength)
 
     c.info['name'] = 'noisyplane'

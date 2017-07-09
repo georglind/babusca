@@ -434,7 +434,7 @@ class Setup:
             if nf < ni:
                 gt = np.conj(gt)   # b = (b^dagger)^dagger
 
-            gen = (gt[i] * self.trsn(ni, self.channels[channel].sites[i], nf, phi) for i in xrange(self.channels[channel].n))
+            gen = (gt[i] * self.trsn(ni, self.channels[channel].sites[i], nf, phi) for i in range(self.channels[channel].n))
             self._cache['trans'][ckey] = sum(gen)
 
         return self._cache['trans'][ckey]
@@ -478,7 +478,7 @@ class Setup:
 
             # transition
             A = np.zeros((nsf.basis.len, nsi.basis.len), dtype=np.complex128)
-            for i in xrange(nsi.basis.len):
+            for i in range(nsi.basis.len):
                 A[:, i] = psifl.conj().T.dot(
                     bosehubbard.transition(site, psiir[:, i], nsi.basis, nsf.basis)
                 )

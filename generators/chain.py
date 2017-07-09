@@ -34,7 +34,7 @@ class Chain(scattering.Setup):
         """
         model = scattering.Model(
             Es=Es,
-            links=[(i, i + 1, ts[i]) for i in xrange(N - 1)],
+            links=[(i, i + 1, ts[i]) for i in range(N - 1)],
             Us=Us)
 
         if gs is None:
@@ -46,7 +46,7 @@ class Chain(scattering.Setup):
 
         parasites = []
         if parasite > 0:
-            parasites = [scattering.Channel(site=i, strength=parasite) for i in xrange(N)]
+            parasites = [scattering.Channel(site=i, strength=parasite) for i in range(N)]
 
         scattering.Setup.__init__(self, model, channels, parasites)
 
@@ -141,9 +141,9 @@ def noisify(chse, dE, dt, dU):
     # print(dEs)
 
     c = Chain(chse.N, chse.js,
-              [chse.Es[i] + dEs[i] for i in xrange(chse.N)],
-              [chse.ts[i] + dts[i] for i in xrange(chse.N - 1)],
-              [chse.Us[i] + dUs[i] for i in xrange(chse.N)],
+              [chse.Es[i] + dEs[i] for i in range(chse.N)],
+              [chse.ts[i] + dts[i] for i in range(chse.N - 1)],
+              [chse.Us[i] + dUs[i] for i in range(chse.N)],
               chse.gs, chse.parasites[0].strength)
 
     c.info['name'] = 'noisychain'
