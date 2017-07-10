@@ -1,12 +1,14 @@
 # babusca
 
-Scattering theory for few-photon transport through Bose-Hubbard lattices coupled locally or quasi-locally to chiral channels. Such scattering setups can be (and have been) realized in superconducting circuits or using optical resonators.
+Babusca is a python package that numerically implements diagrammatic scattering theory for few-photon transport through Bose-Hubbard lattices coupled to chiral channels. Such scattering setups can be (and have been) realized in superconducting circuits or using optical resonators.
 
-The babusca library is capable at calculating first and second order coherence function for Bose-Hubbard lattices coupled to any number of chiral channels. On current equipment babusca can cope with system of up to 120-150 sites.
+The babusca library is capable at calculating first and second order coherence function for Bose-Hubbard lattices coupled locally or quasi-locally to one or multiple chiral channels. babusca can cope with system of up to 120-150 sites on current equipment.
 
-The code is well documented and the exmamples folder contains several calculations for various lattice geometries.
+The code is well documented and the examples folder contains several calculations for various lattice geometries.
 
 If you have any questions or comments, please, don't hesitate to contact me.
+
+/Kim G. L. Pedersen
 
 ## Basic usage
 
